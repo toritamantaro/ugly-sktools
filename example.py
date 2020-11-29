@@ -38,7 +38,7 @@ def light_gbm_example():
             'lambda_l2': {'low': 1e-8, 'high': 1e1, },
         },
         'uniform': {
-            'subsample': {'low': 0.1, 'high': 0.5, },
+            'colsample_bytree':{'low': 0.5,'high': 1.0,},
         },
         'int': {
             'max_depth': {'low': 4, 'high': 16, },
