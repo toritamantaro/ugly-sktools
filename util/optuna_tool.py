@@ -7,6 +7,10 @@ from sklearn.model_selection import cross_validate
 
 
 class FunctionFactory(metaclass=ABCMeta):
+    """
+    Factoryパターンの抽象クラス
+    """
+
     def create(self, estimator: BaseEstimator, search_params: dir) -> Callable[[], float]:
         f = self.create_function(estimator, search_params)
         return f
@@ -18,8 +22,9 @@ class FunctionFactory(metaclass=ABCMeta):
 
 class OptunaObjectiveFactory(FunctionFactory):
     """
+    具体的なFactoryクラス
+    Optuna用のobjective関数を生成する
     sklearn.model_selection.cross_validate()で評価した値を用いて最適化を行う
-    Optuna用のobjective関数を生成するクラスです
     """
 
     def __init__(self, scoring: str = 'roc_auc', n_folds: int = 10):
